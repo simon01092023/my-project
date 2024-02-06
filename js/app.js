@@ -1,41 +1,100 @@
-/*----- constants -----*/
 
-//dice faces images
+/*----- constants -----*/
+const minWager = 1;
+const maxWager = 100;
 
 /*----- app's state (variables) -----*/
 
-// Human Player Roll first 
-// Player diceRoll
+let bank = 100;
+//start with $100 in the bank 
+let wager;
+//Must implement wagering feature
+let diceRolled;
 
-// Computer Roll second 
-// Computer diceRoll
-
-// point
-
-// results 
 
 /*----- cached element references -----*/
 
-// buttons
-// random number generator 
+const startOfGame = document.getElementById('startGame')
+const gameInput = document.getElementById('gameInput');
+const gameOutput = document.getElementById('gameOutput');
 
 /*----- event listeners -----*/
 
-// diceRoll 
-
-// buttons 
+//startOfGame.addEventListener('start', runGame);
 
 /*----- functions -----*/
 
-// Board
+function rollDie() {
+    return Math.floor(Math.random() * 6) + 1;
+    //Generates a random number from 1 to 6 can you be used per die
+};
 
-// start
+function rollDice() {
+    const die1 = rollDie();
+    const die2 = rollDie();
+    return die1 + die2;
+    //returns the results of a pair of dice
+}
 
-// results 
+function wagerSaved() {
+    wager = Number(gameInput.value);
+    //saves the value from the player prompt at start of game
+    if (wager >= minWager && wager <= maxWager && wager <= bank) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-// play again
+function bankTotal() {
+    if (diceRolled == "win") {
+        bank = bank + wager;
+    } else if (diceRolled == "lose") {
+        bank = bank - wager;
+    } else {
+        //console.log error here ?
+    }
 
-// quit
+}
+
+function outputDiceRolled() {
+    gameOutput.textContent = `You $${wager} and your bank is now $${bank}.`
+}
+
+function rollingDice() {
+    if (wagerSaved()) {
+        const firstRoll = rollDice();
+        //come out roll (first roll can = win, lose, or assign point)
+        if (firstRoll === 7 || firstRoll === 11 || firstRoll === 12) {
+            result = "win";
+            //if win 
+        } else if (firstRoll === 2 || firstRoll === 3) {
+            result = "lose";
+            // if lose 
+        } else {
+            //else assign a point(first roll = dice number for win) until end of game
+            const point = firstRoll;
+            let roll;
+            while (roll !== point && roll !== 7)
+                //game will loop until a win or lost
+                if (roll === point) {
+                    result = "win";
+                } else {
+                    result = "lose";
+                }
+        }
+        bankTotal();
+        //need to return and update bank balance 
+        outputDiceRolled();
+    } else {
+        //catch all for wager amount 
+        console.log(`Invalid wager amount. Please enter a number between ${minWager} and ${maxWager} your will not be able to exceed you bank total amount.`);
+    }
+}
+
+
+
+
 
 
 // Additional Notes can use info for ReadMe 
@@ -57,3 +116,5 @@
 // Now find a way to invoke the functions
 
 // Add event listeners to buttons that say roll dice start game and maybe end game early (same as losing but maybe need to break out of a function.
+
+//https://git.generalassemb.ly/SEI-CC/sei-1-22-wc/blob/main/Unit_1/project-1/project-1-requirements.md
