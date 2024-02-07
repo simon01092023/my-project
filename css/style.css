@@ -1,0 +1,16 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#board {
+    display: flex;
+    height: 50%;
+    width: 50%;
+    border: 2px dashed red;
+    font-size: 1em;
+    margin: 10px;
+    padding: 10px;
+} */
+

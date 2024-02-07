@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Rolling Dice</title>
     <style src="css/style.css"></style>
-    <script src="js/app.js"></script>
+    <script defer src="js/app.js"></script>
 </head>
+
 <body>
-    <form id="startGame">
-    <label for="gameInput"> Enter the amount you wish to wager(1-100)</label>
-    <input id="gameInput" type="number" min ="1" max="100">
-    <button type="submit" value="submit" value="wager button works">Enter Wager</button>
-    </form>
-    <!-- https://www.w3schools.com/html/html_forms.asp -->
+        <div id="board">
+            <p> Bank: $<span id="bankBalanceBoard">0</span></p>
+            <p> Point: <span id="pointBoard">0</span></p>
+            <p> Pot: $<span id="wagerPotBoard">0</span></p>
+        </div>
+        <label for="gameInput"> Enter the amount you wish to wager first wager has to be from $1 upto $100</label>
+        <input id="gameInput" type="number" min="1" max=`${bank}`>
+        <button id="startOfGame">Roll!</button>
+        <!-- https://www.w3schools.com/html/html_forms.asp -->
+        <p id='gameOutput'></p>
 </body>
+
 </html>

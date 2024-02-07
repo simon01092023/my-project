@@ -1,97 +1,115 @@
-
 /*----- constants -----*/
 const minWager = 1;
-const maxWager = 100;
+const bankAtStart = 100;
 
 /*----- app's state (variables) -----*/
-
-let bank = 100;
-//start with $100 in the bank 
+let bank = bankAtStart;
 let wager;
-//Must implement wagering feature
 let diceRolled;
+let roll;
+let point = 0;
+let wagerPotAmount = 0;
 
 
 /*----- cached element references -----*/
-
-const startOfGame = document.getElementById('startGame')
+const startOfGame = document.getElementById('startOfGame');
 const gameInput = document.getElementById('gameInput');
 const gameOutput = document.getElementById('gameOutput');
+const bankBalanceBoard = document.getElementById('bankBalanceBoard');
+const pointBoard = document.getElementById('pointBoard');
+const wagerPotBoard = document.getElementById('wagerPotBoard');
 
 /*----- event listeners -----*/
-
-//startOfGame.addEventListener('start', runGame);
+startOfGame.addEventListener('click', rollingDice);
 
 /*----- functions -----*/
-
 function rollDie() {
     return Math.floor(Math.random() * 6) + 1;
-    //Generates a random number from 1 to 6 can you be used per die
-};
+}
 
 function rollDice() {
     const die1 = rollDie();
     const die2 = rollDie();
     return die1 + die2;
-    //returns the results of a pair of dice
 }
 
 function wagerSaved() {
     wager = Number(gameInput.value);
-    //saves the value from the player prompt at start of game
-    if (wager >= minWager && wager <= maxWager && wager <= bank) {
+    if (wager >= minWager && wager && wager <= bank) {
+        bank -= wager; // Minus the wager from the bank
+        wagerPotAmount += wager; // Add the wager to the pot
+        bankBalanceBoard.textContent = bank;
+        wagerPotBoard.textContent = wagerPotAmount;
         return true;
     } else {
         return false;
     }
 }
 
-function bankTotal() {
-    if (diceRolled == "win") {
-        bank = bank + wager;
-    } else if (diceRolled == "lose") {
-        bank = bank - wager;
-    } else {
-        //console.log error here ?
-    }
+function checkPoint(roll) {
+    if (point === 0) {
+        if (roll === 7 || roll === 11) {
+            diceRolled = 'win';
+            gameOutput.innerHTML = `You rolled ${roll} on the come out and won double the pot amount of $${wagerPotAmount * 2}!`;
+            bank += (wagerPotAmount * 2); // Add the wagerPotAmount to the bank
+            wagerPotAmount = 0; // Reset the wagerPotAmount
+            bankBalanceBoard.innerHTML = bank; // Update the bank 
 
+        } else if (roll === 2 || roll === 3 || roll === 12) {
+            diceRolled = 'lose';
+            gameOutput.innerHTML = `You rolled ${roll} and lost!`;
+            bankBalanceBoard.innerHTML = bank; // Update the bank 
+        } else {
+            point = roll;
+            diceRolled = point;
+            // Update the pointBoard in real time
+            pointBoard.innerHTML = point;
+        }
+    } else {
+        if (roll === point) {
+            diceRolled = 'win';
+            gameOutput.innerHTML = `You rolled your point ${roll} and won the pot $${wagerPotAmount}!`;
+            bank += wagerPotAmount; // Add the wagerPotAmount to the bank
+            wagerPotAmount = 0; // Reset the wagerPotAmount
+            bankBalanceBoard.innerHTML = bank; // Update the bank 
+            point = 0;
+
+        } else if (roll === 7) {
+            diceRolled = 'lose';
+            gameOutput.innerHTML = `You rolled ${roll} and lost. Your point was ${point}.`;
+            point = 0;
+        }
+    }
 }
 
 function outputDiceRolled() {
-    gameOutput.textContent = `You $${wager} and your bank is now $${bank}.`
+    gameOutput.innerHTML += `<br>Wagered: $${wager}, you rolled ${roll}, Point:${point}, Balance: $${bank}.`;
+    if (diceRolled === point) {
+        pointBoard.innerHTML = `${point}`;
+    } else {
+        pointBoard.innerHTML = 0;
+    }
+    if (diceRolled === 'win' || diceRolled === 'lose') {
+        setTimeout(() => {
+            gameOutput.innerHTML = '';
+            pointBoard.innerHTML = ''; // Clear the point display
+        }, 100000);
+    }
+    if (bank === 0) {
+        gameOutput.innerHTML =
+            gameOutput.innerHTML += "<br>Game over! Your bank balance is zero.";
+        startOfGame.disabled = true; // Disable the button
+    }
+
 }
 
-function rollingDice() {
+function rollingDice(e) {
     if (wagerSaved()) {
-        const firstRoll = rollDice();
-        //come out roll (first roll can = win, lose, or assign point)
-        if (firstRoll === 7 || firstRoll === 11 || firstRoll === 12) {
-            result = "win";
-            //if win 
-        } else if (firstRoll === 2 || firstRoll === 3) {
-            result = "lose";
-            // if lose 
-        } else {
-            //else assign a point(first roll = dice number for win) until end of game
-            const point = firstRoll;
-            let roll;
-            while (roll !== point && roll !== 7)
-                //game will loop until a win or lost
-                if (roll === point) {
-                    result = "win";
-                } else {
-                    result = "lose";
-                }
-        }
-        bankTotal();
-        //need to return and update bank balance 
+        roll = rollDice();
+        checkPoint(roll);
         outputDiceRolled();
-    } else {
-        //catch all for wager amount 
-        console.log(`Invalid wager amount. Please enter a number between ${minWager} and ${maxWager} your will not be able to exceed you bank total amount.`);
     }
 }
-
 
 
 
