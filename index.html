@@ -13,23 +13,23 @@
 <body>
     <div id="board">
         <h1>Rolling Dice</h1>
+        <div>
         <img id="imgdie1" src="img/die-1.png">
         <img id="imgdie2" src="img/die-2.png">
         <img id="imgdie3" src="img/die-3.png">
         <img id="imgdie4" src="img/die-4.png">
         <img id="imgdie5" src="img/die-5.png">
         <img id="imgdie6" src="img/die-6.png">
+        </div>
         <p> Bank: $<span id="bankBalanceBoard"></span></p>
         <p> Point: <span id="pointBoard"></span></p>
         <p> Pot: $<span id="wagerPotBoard"></span></p>
-    <label for="gameInput"> Enter the amount you wish to wager first wager has to be from $1 upto $100</label>
+    <label for="gameInput"> Enter the amount you wish to wager first wager has to be from $1 up to $100</label>
     <input id="gameInput" type="number" min="1" max=`${bank}`>
     <button id="startOfGame">Roll!</button>
     <!-- https://www.w3schools.com/html/html_forms.asp -->
     <p id='gameOutput'></p>
     
-        <!-- <img id="wallet" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F000%2F594%2F216%2Fnon_2x%2Fbrown-leather-wallet-with-lots-of-money-vector-illustration.jpg&f=1&nofb=1&ipt=3b5c94a8440727875aa1ae7e9ab6e10fc1aeb9f7a44dceb6a900d77d03b9228a&ipo=images">
-        <img id="jackpt" src="https://clipground.com/images/cash-png-13.png"> -->
         <p id='gameStatus'></p>
         <ol id='rollHistory'></ol>
 

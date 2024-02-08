@@ -133,7 +133,7 @@ function outputDiceRolled() {
         setTimeout(() => {
             gameOutput.innerHTML = '';
             pointBoard.innerHTML = ''; // Clear the point display
-        }, 3500);
+        }, 7000);
     }
     if (bank === 0) {
         gameOutput.innerHTML =
