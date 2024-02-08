@@ -19,7 +19,8 @@ const pointBoard = document.getElementById('pointBoard');
 const wagerPotBoard = document.getElementById('wagerPotBoard');
 const gameStatus = document.getElementById('gameStatus');
 const rollHistory = document.getElementById('rollHistory');
-
+const bigDie1 = document.querySelector('#bigDie1');
+const bigDie2 = document.querySelector('#bigDie2');
 /*----- event listeners -----*/
 startOfGame.addEventListener('click', rollingDice);
 
@@ -34,19 +35,23 @@ function init() {
     renderBank()
 }
 
+function renderDice(roll1Value, roll2Value) {
+    bigDie1.src = `img/die-${roll1Value}.png`
+    bigDie2.src = `img/die-${roll2Value}.png`
+}
 function renderBank() {
     bankBalanceBoard.textContent = bank;
 }
 
 function rollDie() {
     const roll = Math.floor(Math.random() * 6) + 1;
-    `die${roll}`.src =`die-${roll}.png` ;
     return roll
 }
 
 function rollDice() {
     const die1 = rollDie();
     const die2 = rollDie();
+    renderDice(die1, die2)
     return die1 + die2;
 }
 
@@ -87,7 +92,7 @@ function checkPoint(roll) {
             wagerPotAmount = 0; // Reset the wagerPotAmount
             gameStatus.textContent = 'You win!';
             renderBank(); // Update the bank 
-            
+
 
         } else if (roll === 2 || roll === 3 || roll === 12) {
             diceRolled = 'lose';
@@ -115,13 +120,10 @@ function checkPoint(roll) {
                 if (bank === 0) {
                     gameOutput.innerHTML = gameOutput.innerHTML += "<br>Game over! Your bank balance is zero.";
                     startOfGame.disabled = true; // Disable the button
-                    return point = 0;
-                } else {
+                } else
                     gameOutput.innerHTML = `You rolled ${roll} and lost. Your point was ${point}.`;
-                    gameStatus.textContent = 'You lose!';
-                    gameStatus.textContent = 'You lose!';
-                    return point = 0; 
-                }
+                gameStatus.textContent = 'You lose!';
+                return point = 0;
             }
         }
     }
