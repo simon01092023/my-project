@@ -111,10 +111,18 @@ function checkPoint(roll) {
             gameStatus.textContent = 'You win!';
 
         } else if (roll === 7) {
-            diceRolled = 'lose';
-            gameOutput.innerHTML = `You rolled ${roll} and lost. Your point was ${point}.`;
-            gameStatus.textContent = 'You lose!';
-            return point = 0; 
+            if (diceRolled = 'lose') {
+                if (bank === 0) {
+                    gameOutput.innerHTML = gameOutput.innerHTML += "<br>Game over! Your bank balance is zero.";
+                    startOfGame.disabled = true; // Disable the button
+                    return point = 0;
+                } else {
+                    gameOutput.innerHTML = `You rolled ${roll} and lost. Your point was ${point}.`;
+                    gameStatus.textContent = 'You lose!';
+                    gameStatus.textContent = 'You lose!';
+                    return point = 0; 
+                }
+            }
         }
     }
 }
@@ -136,8 +144,7 @@ function outputDiceRolled() {
         }, 7000);
     }
     if (bank === 0) {
-        gameOutput.innerHTML =
-            gameOutput.innerHTML += "<br>Game over! Your bank balance is zero.";
+        gameOutput.innerHTML = gameOutput.innerHTML += "<br>Game over! Your bank balance is zero.";
         startOfGame.disabled = true; // Disable the button
     }
 
