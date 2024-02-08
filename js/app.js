@@ -118,7 +118,7 @@ function checkPoint(roll) {
         } else if (roll === 7) {
             if (diceRolled = 'lose') {
                 if (bank === 0) {
-                    gameOutput.innerHTML = gameOutput.innerHTML += "<br>Game over! Your bank balance is zero.";
+                    gameOutput.innerHTML = gameOutput.innerHTML += "<br>Game over! Your bank balance is zero.<br>";
                     startOfGame.disabled = true; // Disable the button
                 } else
                     gameOutput.innerHTML = `You rolled ${roll} and lost. Your point was ${point}.`;

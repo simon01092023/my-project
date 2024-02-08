@@ -14,24 +14,27 @@
     <div id="board">
         <h1>Rolling Dice</h1>
         <div>
-        <img id="imgdie1" src="img/die-1.png">
-        <img id="imgdie2" src="img/die-2.png">
-        <img id="imgdie3" src="img/die-3.png">
-        <img id="imgdie4" src="img/die-4.png">
-        <img id="imgdie5" src="img/die-5.png">
-        <img id="imgdie6" src="img/die-6.png">
+            <img id="imgdie1" src="img/die-1.png">
+            <img id="imgdie2" src="img/die-2.png">
+            <img id="imgdie3" src="img/die-3.png">
+            <img id="imgdie4" src="img/die-4.png">
+            <img id="imgdie5" src="img/die-5.png">
+            <img id="imgdie6" src="img/die-6.png">
         </div>
         <p> Bank: $<span id="bankBalanceBoard"></span></p>
         <p> Point: <span id="pointBoard"></span></p>
         <p> Pot: $<span id="wagerPotBoard"></span></p>
-        <img id="bigDie1" src="" alt="bigDie1">
-        <img id="bigDie2" src="" alt="bigDie2">
-    <label for="gameInput"> Enter the amount you wish to wager first wager has to be from $1 up to $100</label>
-    <input id="gameInput" type="number" min="1" max=`${bank}`>
-    <button id="startOfGame">Roll!</button>
-    <!-- https://www.w3schools.com/html/html_forms.asp -->
-    <p id='gameOutput'></p>
-    
+        <div id="bigDice">
+            <img id="bigDie1" src="" alt="feeling ">
+            <img id="bigDie2" src="" alt="lucky? ">
+        </div>
+        <label for="gameInput"> Enter the amount you wish to wager first wager has to be from $1 up to $100</label>
+        <input id="gameInput" type="number" min="1" max=`${bank}`>
+        <div>
+        <button id="startOfGame">Roll!</button>
+        <!-- https://www.w3schools.com/html/html_forms.asp -->
+        </div>
+        <p id='gameOutput'></p>
         <p id='gameStatus'></p>
         <ol id='rollHistory'></ol>
 

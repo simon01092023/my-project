@@ -12,7 +12,7 @@ h1 {
 }
 
 html {
-    background-color: rgba(0, 0, 0, 0.28); 
+    background-color: rgba(0, 0, 0, 0.28);
     /* Semi-transparent black background for the board */
     background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F73%2F44%2Fdf%2F7344df4ce0ef278d7d96d34358d269c4.jpg&f=1&nofb=1&ipt=5670f1d84fb8e8b120f2912f2f9b37649fb24f9a67f85cb3fcfc44cdac8a94ec&ipo=images');
     background-repeat: no-repeat;
@@ -25,7 +25,7 @@ html {
 
 body {
     font-family: 'Courier New', Courier, monospace;
-    /* This font gives a gritty, urban feel */
+    /* urban feel */
     color: white;
     /* White color for better contrast against the dark background */
     margin: 0, auto;
@@ -64,7 +64,19 @@ button:hover {
     background-color: forestgreen
         /* Darker green when mouse hovers over */
 }
+#bigDice img {
+    transform: scale(1.75) ;
+    margin-left: 7px;
+    margin-right: 7px;
+}
 
+#bigDice img#bigDie1 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("bigDie2.png"); /* add a matte layer on top of the image */
+  }
+  
+  #bigDice img#bigDie2 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("bigDie1.png"); /* add a matte layer on top of the image */
+  }
 @keyframes roll {
     0% {
         transform: rotate(0deg);
@@ -80,19 +92,33 @@ button:hover {
 #imgdie3,
 #imgdie4,
 #imgdie5,
-#imgdie6 {
+#imgdie6,
+#bigDie1,
+#bigDie2 {
     animation: roll 0.6s ease-in-out;
 }
 
-.dice {
-    font-size: 100px;
-    font-weight: 800;
-}
 
 /* Create a rolling animation for the dice */
-.dice::after {
+#bigDie1::after, 
+#bigDie2::after {
     content: '';
     /* Empty content */
     animation: rolling 6s linear infinite;
     /* Apply the rolling animation */
+}
+
+#bigDie1,
+#bigDie2::after {
+    content: ''; /* Empty content */
+    animation: rolling 6s linear infinite;
+}
+
+@keyframes rolling {
+    0% { content: '\2680'; } /* Dice face 1 */
+    20% { content: '\2681'; } /* Dice face 2 */
+    40% { content: '\2682'; } /* Dice face 3 */
+    60% { content: '\2683'; } /* Dice face 4 */
+    80% { content: '\2684'; } /* Dice face 5 */
+    100% { content: '\2685'; } /* Dice face 6 */
 }
