@@ -3,12 +3,12 @@ const minWager = 1;
 const bankAtStart = 100;
 
 /*----- app's state (variables) -----*/
-let bank = bankAtStart;
+let bank;
 let wager;
 let diceRolled;
 let roll;
-let point = 0;
-let wagerPotAmount = 0;
+let point;
+let wagerPotAmount;
 
 /*----- cached element references -----*/
 const startOfGame = document.getElementById('startOfGame');
@@ -17,13 +17,31 @@ const gameOutput = document.getElementById('gameOutput');
 const bankBalanceBoard = document.getElementById('bankBalanceBoard');
 const pointBoard = document.getElementById('pointBoard');
 const wagerPotBoard = document.getElementById('wagerPotBoard');
+const gameStatus = document.getElementById('gameStatus');
+const rollHistory = document.getElementById('rollHistory');
 
 /*----- event listeners -----*/
 startOfGame.addEventListener('click', rollingDice);
 
 /*----- functions -----*/
+init()
+
+function init() {
+    bank = 100;
+    wager = 0;
+    point = 0;
+    wagerPotAmount = 0;
+    renderBank()
+}
+
+function renderBank() {
+    bankBalanceBoard.textContent = bank;
+}
+
 function rollDie() {
-    return Math.floor(Math.random() * 6) + 1;
+    const roll = Math.floor(Math.random() * 6) + 1;
+    `die${roll}`.src =`die-${roll}.png` ;
+    return roll
 }
 
 function rollDice() {
@@ -39,8 +57,8 @@ function wagerSaved() {
         if (wager >= 0 && wager <= bank) {
             bank -= wager; // Subtract the wager from the bank
             wagerPotAmount += wager; // Add the wager to the pot
-            bankBalanceBoard.textContent = bank;
-            wagerPotBoard.textContent = wagerPotAmount;
+            renderBank();
+            wagerPotBoard.innerHTML = wagerPotAmount;
             return true;
         } else {
             return false;
@@ -50,8 +68,8 @@ function wagerSaved() {
         if (wager >= minWager && wager <= bank) {
             bank -= wager; // Subtract the wager from the bank
             wagerPotAmount += wager; // Add the wager to the pot
-            bankBalanceBoard.textContent = bank;
-            wagerPotBoard.textContent = wagerPotAmount;
+            renderBank();
+            wagerPotBoard.innerHTML = wagerPotAmount;
             return true;
         } else {
             return false;
@@ -67,12 +85,15 @@ function checkPoint(roll) {
             gameOutput.innerHTML = `You rolled ${roll} on the come out and won double the pot amount of $${wagerPotAmount * 2}!`;
             bank += (wagerPotAmount * 2); // Add the wagerPotAmount to the bank
             wagerPotAmount = 0; // Reset the wagerPotAmount
-            bankBalanceBoard.innerHTML = bank; // Update the bank 
+            gameStatus.textContent = 'You win!';
+            renderBank(); // Update the bank 
+            
 
         } else if (roll === 2 || roll === 3 || roll === 12) {
             diceRolled = 'lose';
             gameOutput.innerHTML = `You rolled ${roll} and lost!`;
-            bankBalanceBoard.innerHTML = bank; // Update the bank 
+            gameStatus.textContent = 'You lose!';
+            renderBank();// Update the bank 
         } else {
             point = roll;
             diceRolled = point;
@@ -83,21 +104,26 @@ function checkPoint(roll) {
         if (roll === point) {
             diceRolled = 'win';
             gameOutput.innerHTML = `You rolled your point ${roll} and won the pot $${wagerPotAmount}!`;
-            bank += wagerPotAmount; // Add the wagerPotAmount to the bank
-            wagerPotAmount = 0; // Reset the wagerPotAmount
-            bankBalanceBoard.innerHTML = bank; // Update the bank 
+            bank += wagerPotAmount; // Add winning point pot to the bank
+            wagerPotAmount = 0; // Reset pot 
+            renderBank(); // Update the bank 
             point = 0;
+            gameStatus.textContent = 'You win!';
 
         } else if (roll === 7) {
             diceRolled = 'lose';
             gameOutput.innerHTML = `You rolled ${roll} and lost. Your point was ${point}.`;
-            return point = 0;
+            gameStatus.textContent = 'You lose!';
+            return point = 0; 
         }
     }
 }
 
 function outputDiceRolled() {
     gameOutput.innerHTML += `<br>Wagered: $${wager}, Rolled: ${roll}, Point: ${point}, Balance: $${bank}.`;
+    const listItem = document.createElement('li');
+    listItem.textContent = `Wagered: $${wager}, Rolled: ${roll}, Point: ${point}, Balance: $${bank}.`;
+    rollHistory.appendChild(listItem);
     if (diceRolled === point) {
         pointBoard.innerHTML = `${point}`;
     } else {
@@ -107,7 +133,7 @@ function outputDiceRolled() {
         setTimeout(() => {
             gameOutput.innerHTML = '';
             pointBoard.innerHTML = ''; // Clear the point display
-        }, 2500);
+        }, 3500);
     }
     if (bank === 0) {
         gameOutput.innerHTML =
