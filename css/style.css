@@ -108,7 +108,7 @@ button:hover {
     /* Apply the rolling animation */
 }
 
-#bigDie1,
+#bigDie1::after,
 #bigDie2::after {
     content: ''; /* Empty content */
     animation: rolling 6s linear infinite;
