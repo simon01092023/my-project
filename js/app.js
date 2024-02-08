@@ -10,7 +10,6 @@ let roll;
 let point = 0;
 let wagerPotAmount = 0;
 
-
 /*----- cached element references -----*/
 const startOfGame = document.getElementById('startOfGame');
 const gameInput = document.getElementById('gameInput');
@@ -35,16 +34,31 @@ function rollDice() {
 
 function wagerSaved() {
     wager = Number(gameInput.value);
-    if (wager >= minWager && wager && wager <= bank) {
-        bank -= wager; // Minus the wager from the bank
-        wagerPotAmount += wager; // Add the wager to the pot
-        bankBalanceBoard.textContent = bank;
-        wagerPotBoard.textContent = wagerPotAmount;
-        return true;
+    if (point > 0) {
+        // Allow wager to be 0 if there is a point assigned
+        if (wager >= 0 && wager <= bank) {
+            bank -= wager; // Subtract the wager from the bank
+            wagerPotAmount += wager; // Add the wager to the pot
+            bankBalanceBoard.textContent = bank;
+            wagerPotBoard.textContent = wagerPotAmount;
+            return true;
+        } else {
+            return false;
+        }
     } else {
-        return false;
+        // If there is no point assigned, wager must be at least minWager
+        if (wager >= minWager && wager <= bank) {
+            bank -= wager; // Subtract the wager from the bank
+            wagerPotAmount += wager; // Add the wager to the pot
+            bankBalanceBoard.textContent = bank;
+            wagerPotBoard.textContent = wagerPotAmount;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
+
 
 function checkPoint(roll) {
     if (point === 0) {
@@ -77,13 +91,13 @@ function checkPoint(roll) {
         } else if (roll === 7) {
             diceRolled = 'lose';
             gameOutput.innerHTML = `You rolled ${roll} and lost. Your point was ${point}.`;
-            point = 0;
+            return point = 0;
         }
     }
 }
 
 function outputDiceRolled() {
-    gameOutput.innerHTML += `<br>Wagered: $${wager}, you rolled ${roll}, Point:${point}, Balance: $${bank}.`;
+    gameOutput.innerHTML += `<br>Wagered: $${wager}, Rolled: ${roll}, Point: ${point}, Balance: $${bank}.`;
     if (diceRolled === point) {
         pointBoard.innerHTML = `${point}`;
     } else {
@@ -93,7 +107,7 @@ function outputDiceRolled() {
         setTimeout(() => {
             gameOutput.innerHTML = '';
             pointBoard.innerHTML = ''; // Clear the point display
-        }, 100000);
+        }, 2500);
     }
     if (bank === 0) {
         gameOutput.innerHTML =
@@ -110,10 +124,6 @@ function rollingDice(e) {
         outputDiceRolled();
     }
 }
-
-
-
-
 
 // Additional Notes can use info for ReadMe 
 
@@ -136,3 +146,12 @@ function rollingDice(e) {
 // Add event listeners to buttons that say roll dice start game and maybe end game early (same as losing but maybe need to break out of a function.
 
 //https://git.generalassemb.ly/SEI-CC/sei-1-22-wc/blob/main/Unit_1/project-1/project-1-requirements.md
+
+
+
+// startOfGame: This is the id of your button element.
+// gameInput: This is the id of your input element where the user enters their wager.
+// gameOutput: This is the id of the paragraph element where you display the game output.
+// bankBalanceBoard: This is the id of the span element where you display the bank balance.
+// pointBoard: This is the id of the span element where you display the point.
+// wagerPotBoard: This is the id of the span element where you display the wager pot.
