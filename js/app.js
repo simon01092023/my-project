@@ -1,7 +1,7 @@
 /*----- constants -----*/
 
 const minWager = 1;
-const bankAtStart = 100;
+
 
 /*----- app's state (variables) -----*/
 
@@ -175,7 +175,7 @@ function outputDiceRolled() {
 }
 
 function rollingDice(e) {
-    if (wagerSaved()) {
+    if (wagerSaved()) { //if wager is entered correctly
         roll = rollDice();
         checkPoint(roll);
         outputDiceRolled();
