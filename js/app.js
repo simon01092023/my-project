@@ -12,6 +12,7 @@ let wagerPotAmount;
 
 /*----- cached element references -----*/
 const startOfGame = document.getElementById('startOfGame');
+const reset = document.getElementById('reset');
 const gameInput = document.getElementById('gameInput');
 const gameOutput = document.getElementById('gameOutput');
 const bankBalanceBoard = document.getElementById('bankBalanceBoard');
@@ -23,6 +24,7 @@ const bigDie1 = document.querySelector('#bigDie1');
 const bigDie2 = document.querySelector('#bigDie2');
 /*----- event listeners -----*/
 startOfGame.addEventListener('click', rollingDice);
+reset.addEventListener('click', init);
 
 /*----- functions -----*/
 init()
