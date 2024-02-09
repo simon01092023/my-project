@@ -1,8 +1,10 @@
 /*----- constants -----*/
+
 const minWager = 1;
 const bankAtStart = 100;
 
 /*----- app's state (variables) -----*/
+
 let bank;
 let wager;
 let diceRolled;
@@ -11,6 +13,7 @@ let point;
 let wagerPotAmount;
 
 /*----- cached element references -----*/
+
 const startOfGame = document.getElementById('startOfGame');
 const reset = document.getElementById('reset');
 const gameInput = document.getElementById('gameInput');
@@ -20,9 +23,12 @@ const pointBoard = document.getElementById('pointBoard');
 const wagerPotBoard = document.getElementById('wagerPotBoard');
 const gameStatus = document.getElementById('gameStatus');
 const rollHistory = document.getElementById('rollHistory');
+const listItem = document.createElement('li');
 const bigDie1 = document.querySelector('#bigDie1');
 const bigDie2 = document.querySelector('#bigDie2');
+
 /*----- event listeners -----*/
+
 startOfGame.addEventListener('click', rollingDice);
 reset.addEventListener('click', init);
 
@@ -31,10 +37,10 @@ init()
 
 function init() {
     bank = 100;
-    wager = 0;
-    point = 0;
     wagerPotAmount = 0;
+    point = 0;
     renderBank()
+    clearTheBoard()
 }
 
 function renderDice(roll1Value, roll2Value) {
@@ -43,6 +49,15 @@ function renderDice(roll1Value, roll2Value) {
 }
 function renderBank() {
     bankBalanceBoard.textContent = bank;
+    startOfGame.disabled = false;
+}
+
+function clearTheBoard() {
+    rollHistory.textContent ='';
+    gameStatus.textContent ='';
+    gameOutput.textContent ='';
+    wagerPotBoard.textContent = wagerPotAmount;
+    pointBoard.textContent = point; 
 }
 
 function rollDie() {
@@ -133,7 +148,6 @@ function checkPoint(roll) {
 
 function outputDiceRolled() {
     gameOutput.innerHTML += `<br>Wagered: $${wager}, Rolled: ${roll}, Point: ${point}, Balance: $${bank}.`;
-    const listItem = document.createElement('li');
     listItem.textContent = `Wagered: $${wager}, Rolled: ${roll}, Point: ${point}, Balance: $${bank}.`;
     rollHistory.appendChild(listItem);
     if (diceRolled === point) {

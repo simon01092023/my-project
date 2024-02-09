@@ -31,6 +31,7 @@ body {
     margin: 0, auto;
     padding: auto;
     box-sizing: border-box;
+    
 }
 
 #board {
@@ -40,7 +41,7 @@ body {
     /* Semi-transparent black background for the board */
     border: 2px solid white;
     padding: 10px;
-    margin: 0;
+    margin: auto;
     border-radius: 10px;
     /* Rounded corners */
     background-position: center center;
@@ -50,6 +51,10 @@ button {
     margin-left: 10px;
     margin-right: 10px;
     display: inline-block;
+    font-size: 16px;
+    margin-top: 8px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 #startOfGame {
@@ -57,29 +62,29 @@ button {
     /* Green color */
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 15px 30px;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
+    margin-right: 1px;
 }
 
 #reset {
     background-color: red;
     top: 10px;
     right: 15px;
-    color: white;
     text-align: right;
-    font-size: 12px;
-    height: 50px;
-    width: 50px;
+    height: 55px;
+    width: 55px;
     border: none;
     text-align: center;
     text-decoration: none;
-    margin: 4px 2px;
     cursor: pointer;
     border-radius: 50%;
+    padding: auto;
+    font-size: 14px;
+    margin-left: 1px;
+
 }
 
 button:hover {
@@ -91,15 +96,17 @@ button:hover {
     transform: scale(1.75);
     margin-left: 7px;
     margin-right: 7px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 #bigDice img #bigDie1 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("bigDie2.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('#bigDie1');
     /* add a matte layer on top of the image */
 }
 
 #bigDice img #bigDie2 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("bigDie1.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('#bigDie2');
     /* add a matte layer on top of the image */
 }
 
@@ -178,6 +185,15 @@ button:hover {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 125px;
     text-align: center;
+    font-size: 24px;
+    font-family: 'Crimson Text', serif;
+    font-weight: bold;
+}
+
+label {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 16px 0;
 }
