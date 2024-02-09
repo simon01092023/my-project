@@ -53,11 +53,11 @@ function renderBank() {
 }
 
 function clearTheBoard() {
-    rollHistory.textContent ='';
-    gameStatus.textContent ='';
-    gameOutput.textContent ='';
+    rollHistory.textContent = '';
+    gameStatus.textContent = '';
+    gameOutput.textContent = '';
     wagerPotBoard.textContent = wagerPotAmount;
-    pointBoard.textContent = point; 
+    pointBoard.textContent = point;
 }
 
 function rollDie() {
