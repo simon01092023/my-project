@@ -26,6 +26,7 @@ const rollHistory = document.getElementById('rollHistory');
 const listItem = document.createElement('li');
 const bigDie1 = document.querySelector('#bigDie1');
 const bigDie2 = document.querySelector('#bigDie2');
+const diceSound = document.getElementById('diceSound');
 
 /*----- event listeners -----*/
 
@@ -41,11 +42,13 @@ function init() {
     point = 0;
     renderBank()
     clearTheBoard()
+    diceSound.play()
 }
 
 function renderDice(roll1Value, roll2Value) {
     bigDie1.src = `img/die-${roll1Value}.png`
     bigDie2.src = `img/die-${roll2Value}.png`
+    diceSound.play()
 }
 function renderBank() {
     bankBalanceBoard.textContent = bank;
@@ -99,6 +102,9 @@ function wagerSaved() {
     }
 }
 
+function playDiceSound() {
+
+}
 
 function checkPoint(roll) {
     if (point === 0) {
@@ -158,7 +164,7 @@ function outputDiceRolled() {
     if (diceRolled === 'win' || diceRolled === 'lose') {
         setTimeout(() => {
             gameOutput.innerHTML = '';
-            pointBoard.innerHTML = ''; // Clear the point display
+            pointBoard.innerHTML = 0; // Clear the point display
         }, 7000);
     }
     if (bank === 0) {
@@ -173,6 +179,7 @@ function rollingDice(e) {
         roll = rollDice();
         checkPoint(roll);
         outputDiceRolled();
+        diceSound.play()
     }
 }
 

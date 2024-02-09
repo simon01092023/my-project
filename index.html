@@ -15,11 +15,11 @@
 </head>
 
 <body>
-    <div>
-
-    </div>
+    <audio id="diceSound">
+        <source src="media/diceRolling.mp3" type="audio/mpeg">
+    </audio>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play -->
     <div id="board">
-
         <h1>Rolling Dice</h1>
         <div>
             <img id="imgdie1" src="img/die-1.png">
@@ -46,7 +46,6 @@
         <p id='gameOutput'></p>
         <p id='gameStatus'></p>
         <ol id='rollHistory'></ol>
-
     </div>
 </body>
 
