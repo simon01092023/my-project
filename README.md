@@ -35,9 +35,8 @@ Welcome to **Rolling Dice**, a simple craps game where you can test your luck! R
 </p>
 
 ## Getting Started
-    🎲 Game: https://simon01092023.github.io/my-project/ 
-    * Roll! button will start the game 
-     📁 Repo: https://github.com/simon01092023/my-project
+   #### 🎲  [Game Link ]<https://simon01092023.github.io/my-project/>
+#### 📁 [Repo Link]<https://github.com/simon01092023/my-project>
 
  <p align="center">
   <img src="screenshots/4.png" width="350" title="hover text">
