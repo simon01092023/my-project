@@ -60,7 +60,6 @@ button {
     background-color: forestgreen;
     /* Green color */
     border: none;
-    color: white;
     padding: 15px 30px;
     text-align: center;
     text-decoration: none;
@@ -89,11 +88,13 @@ button {
 #startOfGame:hover {
     background-color: #4CAF50;
     /* Brighter green when mouse hovers over */
+    color: white;
 }
 
 #reset:hover {
     background-color: red;
     /* Brighter red when mouse hovers over */
+    color: white;
 }
 
 #bigDice img {
