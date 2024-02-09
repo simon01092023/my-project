@@ -13,7 +13,7 @@ h1 {
 
 html {
     background-color: rgba(0, 0, 0, 0.28);
-    /* Semi-transparent black background for the board */
+    /* semi-transparent black background for the board */
     background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F73%2F44%2Fdf%2F7344df4ce0ef278d7d96d34358d269c4.jpg&f=1&nofb=1&ipt=5670f1d84fb8e8b120f2912f2f9b37649fb24f9a67f85cb3fcfc44cdac8a94ec&ipo=images');
     background-repeat: no-repeat;
     background-size: 100%;
@@ -21,13 +21,14 @@ html {
     background-position: center center;
     height: auto;
     width: auto;
+    margin: auto;
 }
 
 body {
     font-family: 'Courier New', Courier, monospace;
-    /* urban feel */
+    /* newspaper easy to read*/
     color: white;
-    /* White color for better contrast against the dark background */
+    /* white color for better contrast against the dark background */
     margin: 0, auto;
     padding: auto;
     box-sizing: border-box;
@@ -38,12 +39,12 @@ body {
     display: grid;
     place-items: center;
     background-color: rgba(0, 0, 0, 0.6);
-    /* Semi-transparent black background for the board */
+    /* semi-transparent black background for the board */
     border: 2px solid white;
     padding: 10px;
     margin: auto;
     border-radius: 10px;
-    /* Rounded corners */
+    /* rounded corners */
     background-position: center center;
 }
 
@@ -58,7 +59,6 @@ button {
 
 #startOfGame {
     background-color: forestgreen;
-    /* Green color */
     border: none;
     padding: 15px 30px;
     text-align: center;
@@ -87,13 +87,13 @@ button {
 
 #startOfGame:hover {
     background-color: #4CAF50;
-    /* Brighter green when mouse hovers over */
+    /* brighter green when mouse hovers over */
     color: white;
 }
 
 #reset:hover {
     background-color: red;
-    /* Brighter red when mouse hovers over */
+    /* brighter red when mouse hovers over */
     color: white;
 }
 
@@ -137,19 +137,19 @@ button {
 }
 
 
-/* Create a rolling animation for the dice */
+/* create a rolling animation for the dice */
 #bigDie1::after,
 #bigDie2::after {
     content: '';
-    /* Empty content */
+    /* empty content */
     animation: rolling 6s linear infinite;
-    /* Apply the rolling animation */
+    /* apply the rolling animation */
 }
 
 #bigDie1::after,
 #bigDie2::after {
     content: '';
-    /* Empty content */
+    /* 2nd die */
     animation: rolling 6s linear infinite;
 }
 

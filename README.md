@@ -10,19 +10,38 @@ Welcome to **Rolling Dice**, a simple craps game where you can test your luck! R
 - JavaScript: Implementing game logic and animations. 
 
 ## How to Play
-1. Enter the amount you wish to wager (between $1 💵 and your bank balance). 🏦
+<p align="center">
+  <img src="screenshots/1.png" width="350" title="hover text">
+</p>
+1. Enter the amount you wish to wager (between $1 💵 and your bank balance). 🏦 
+<p align="center">
+  <img src="screenshots/2.png" width="350" title="hover text">
+</p>
 2. Click the "Roll!" button to roll the dice. 🟩 = 🎲 + 🎲
+<p align="center">
+  <img src="screenshots/rollButton.png" width="200" title="hover text">
+</p>
 3. The game will evaluate the roll:
     - If the roll is 7 or 11 on the come-out, you win double the pot amount. 🎉💰💰🎊 
     - If the roll is 2, 3, or 12, you lose. 🐍 
     - Otherwise, the roll becomes the point.
+<p align="center">
+  <img src="screenshots/3.png" width="350" title="hover text">
+</p>    
 4. Keep rolling until you win or lose.
 5. Reset the game anytime using the "Reset" button. 🔴
+<p align="center">
+  <img src="screenshots/resetButton.png" width="150" height="150" title="hover text">
+</p>
 
 ## Getting Started
     🎲 Game: https://simon01092023.github.io/my-project/ 
     * Roll! button will start the game 
      📁 Repo: https://github.com/simon01092023/my-project
+
+ <p align="center">
+  <img src="screenshots/4.png" width="350" title="hover text">
+</p>
 
 ## Next Steps: Planned Future Enhancements
 - Add more animations for the dice (rolling, bouncing, etc.). 🎥 
