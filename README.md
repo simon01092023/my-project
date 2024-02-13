@@ -29,7 +29,7 @@ Welcome to **Rolling Dice**, a simple craps game where you can test your luck! R
   <img src="screenshots/3.png" width="350" title="hover text">
 </p>    
 4. Keep rolling until you win or lose.
-
+<br>
 5. Reset the game anytime using the "Reset" button. 🔴
 <p align="center">
   <img src="screenshots/resetButton.png" width="150" height="150" title="hover text">
